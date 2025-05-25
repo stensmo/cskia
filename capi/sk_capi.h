@@ -1,6 +1,7 @@
 #ifndef CSKIA_DEFINED
 #define CSKIA_DEFINED
 
+
 #include <stdint.h>
 #include <stddef.h>
 #ifndef __cplusplus
