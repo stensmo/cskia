@@ -1,4 +1,4 @@
-#include "include/sk_capi.h"
+#include "sk_capi.h"
 
 #include "include/codec/SkBmpDecoder.h"
 #include "include/codec/SkGifDecoder.h"
@@ -1701,7 +1701,7 @@ sk_string_t *sk_string_new(const char *text, size_t len)
 	return reinterpret_cast<sk_string_t *>(new SkString(text, len));
 }
 
-sk_string_t *sk_string_new_empty(void)
+extern sk_string_t *sk_string_new_empty(void)
 {
 	return reinterpret_cast<sk_string_t *>(new SkString());
 }
@@ -1948,39 +1948,8 @@ static void sk_convertDateTime(SkPDF::DateTime *to, sk_date_time_t *from)
 	to->fSecond = from->second;
 }
 
-sk_document_t *sk_document_make_pdf(sk_wstream_t *stream, sk_metadata_t *metadata)
-{
-	SkPDF::Metadata md;
-	if (metadata->title)
-	{
-		md.fTitle = metadata->title;
-	}
-	if (metadata->author)
-	{
-		md.fAuthor = metadata->author;
-	}
-	if (metadata->subject)
-	{
-		md.fSubject = metadata->subject;
-	}
-	if (metadata->keywords)
-	{
-		md.fKeywords = metadata->keywords;
-	}
-	if (metadata->creator)
-	{
-		md.fCreator = metadata->creator;
-	}
-	if (metadata->producer)
-	{
-		md.fProducer = metadata->producer;
-	}
-	sk_convertDateTime(&md.fCreation, &metadata->creation);
-	sk_convertDateTime(&md.fModified, &metadata->modified);
-	md.fRasterDPI = metadata->rasterDPI;
-	md.fEncodingQuality = metadata->encodingQuality;
-	return reinterpret_cast<sk_document_t *>(new SkPDFDocument(reinterpret_cast<SkWStream *>(stream), md));
-}
+
+
 
 // ===== Functions from include/codec/SkCodec.h =====
 
