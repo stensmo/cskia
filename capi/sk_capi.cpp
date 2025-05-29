@@ -808,7 +808,7 @@ sk_font_mgr_t *sk_fontmgr_ref_default(void)
 #elif defined(SK_FONTMGR_FONTCONFIG_AVAILABLE)
 	return reinterpret_cast<sk_font_mgr_t *>(SkFontMgr_New_FontConfig(nullptr).release());
 #else
-#error "No font manager available for this platform"
+
 #endif
 }
 
