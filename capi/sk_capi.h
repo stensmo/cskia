@@ -1,12 +1,12 @@
 #ifndef CSKIA_DEFINED
 #define CSKIA_DEFINED
 
-
 #include <stdint.h>
 #include <stddef.h>
 #ifndef __cplusplus
 #include <stdbool.h>
 #endif // __cplusplus
+
 
 #if !defined(SK_C_API)
 #if defined(SKIA_C_DLL)
@@ -17,12 +17,15 @@
 #define SK_C_API __declspec(dllimport)
 #endif
 #else
-#define SK_C_API __attribute__((visibility("default")))
+#define SK_C_API extern
 #endif
 #else
 #define SK_C_API
 #endif
 #endif
+
+
+
 
 #ifdef __cplusplus
 extern "C"
@@ -986,8 +989,6 @@ extern "C"
 	SK_C_API void sk_document_close(sk_document_t *doc);
 	SK_C_API void sk_document_abort(sk_document_t *doc);
 
-	// ===== Functions from include/docs/SkPDFDocument.h =====
-	SK_C_API sk_document_t *sk_document_make_pdf(sk_wstream_t *stream, sk_metadata_t *metadata);
 
 	// ===== Functions from include/codec/SkCodec.h =====
 	SK_C_API void register_image_codecs();
