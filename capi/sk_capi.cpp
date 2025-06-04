@@ -1949,6 +1949,43 @@ static void sk_convertDateTime(SkPDF::DateTime *to, sk_date_time_t *from)
 }
 
 
+sk_document_t *sk_document_make_pdf(sk_wstream_t *stream, sk_metadata_t *metadata)
+{
+	SkPDF::Metadata md;
+	if (metadata->title)
+	{
+		md.fTitle = metadata->title;
+	}
+	if (metadata->author)
+	{
+		md.fAuthor = metadata->author;
+	}
+	if (metadata->subject)
+	{
+		md.fSubject = metadata->subject;
+	}
+	if (metadata->keywords)
+	{
+		md.fKeywords = metadata->keywords;
+	}
+	if (metadata->creator)
+	{
+		md.fCreator = metadata->creator;
+	}
+	if (metadata->producer)
+	{
+		md.fProducer = metadata->producer;
+	}
+	sk_convertDateTime(&md.fCreation, &metadata->creation);
+	sk_convertDateTime(&md.fModified, &metadata->modified);
+	md.fRasterDPI = metadata->rasterDPI;
+	md.fEncodingQuality = metadata->encodingQuality;
+	return reinterpret_cast<sk_document_t *>(new SkPDFDocument(reinterpret_cast<SkWStream *>(stream), md));
+}
+
+
+
+
 
 
 // ===== Functions from include/codec/SkCodec.h =====
