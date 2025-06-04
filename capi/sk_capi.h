@@ -988,7 +988,8 @@ extern "C"
 	SK_C_API void sk_document_end_page(sk_document_t *doc);
 	SK_C_API void sk_document_close(sk_document_t *doc);
 	SK_C_API void sk_document_abort(sk_document_t *doc);
-
+		// ===== Functions from include/docs/SkPDFDocument.h =====
+	SK_C_API sk_document_t *sk_document_make_pdf(sk_wstream_t *stream, sk_metadata_t *metadata);
 
 	// ===== Functions from include/codec/SkCodec.h =====
 	SK_C_API void register_image_codecs();
